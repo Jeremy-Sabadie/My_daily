@@ -86,6 +86,40 @@ createServer(async (req, res) => {
     return;
   }
 
+
+  if (req.url === '/api/status') {
+    const services = [
+      { name: 'My Popote', url: process.env.MYPOPOTE_HEALTH_URL },
+      { name: 'ProductPulse', url: process.env.PRODUCTPULSE_HEALTH_URL },
+      { name: 'Paperless', url: process.env.PAPERLESS_HEALTH_URL },
+      { name: 'Uptime Kuma', url: process.env.KUMA_HEALTH_URL }
+    ];
+
+    const results = await Promise.all(services.map(async service => {
+      if (!service.url) {
+        return { name: service.name, status: 'Non configuré' };
+      }
+
+      try {
+        const response = await fetch(service.url, {
+          signal: AbortSignal.timeout(5000),
+          redirect: 'manual'
+        });
+
+        return {
+          name: service.name,
+          status: (response.ok || response.status === 302) ? 'En ligne' : 'Hors ligne'
+        };
+      } catch {
+        return { name: service.name, status: 'Hors ligne' };
+      }
+    }));
+
+    res.setHeader('Cache-Control', 'no-store');
+    res.end(JSON.stringify(results));
+    return;
+  }
+
   if (req.url !== '/api/news') {
     res.writeHead(404);
     return res.end(JSON.stringify({ error: 'Not found' }));

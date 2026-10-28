@@ -2,12 +2,20 @@
   <h2>🖥️ Mon VPS</h2>
   <p class="subtitle">Surveillance des services</p>
 
-  @for (service of services; track service.name) {
-    <div class="service">
-      <span>{{ service.name }}</span>
-      <span class="status">{{ service.status }}</span>
-    </div>
+  @if (loading()) {
+    <p>Vérification des services…</p>
+  } @else {
+    @for (service of services(); track service.name) {
+      <div class="service">
+        <span>{{ service.name }}</span>
+        <span class="status"
+              [class.online]="service.status === 'En ligne'"
+              [class.offline]="service.status === 'Hors ligne'">
+          {{ service.status }}
+        </span>
+      </div>
+    }
   }
 
-  <small>Statuts fictifs — connexion à prévoir</small>
+  <small>Actualisation automatique : 60 secondes</small>
 </section>
