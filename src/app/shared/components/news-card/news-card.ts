@@ -22,7 +22,7 @@ export class NewsCard implements OnInit {
   readonly error = signal(false);
 
   ngOnInit(): void {
-    this.http.get<NewsArticle[]>('http://localhost:3100/api/news')
+    this.http.get<NewsArticle[]>('/api/news')
       .subscribe({
         next: articles => this.articles.set(articles),
         error: () => this.error.set(true)
