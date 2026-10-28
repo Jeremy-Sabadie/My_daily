@@ -107,3 +107,42 @@ small {
     grid-template-columns: 1fr;
   }
 }
+
+/* Adaptation TV 16:9 */
+@media (min-width: 1200px) {
+  .news {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .news-header {
+    margin-bottom: 8px;
+  }
+
+  .news-grid {
+    flex: 1;
+    min-height: 0;
+  }
+
+  .news-item {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .news-content {
+    padding: 8px 12px;
+  }
+
+  .news-content h3 {
+    font-size: 17px;
+    line-height: 1.25;
+  }
+
+  .news-content p {
+    font-size: 14px;
+    line-height: 1.35;
+  }
+}

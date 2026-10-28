@@ -71,3 +71,184 @@
 .news-section {
   grid-column: 1 / -1;
 }
+
+/* Grands écrans et télévisions */
+@media (min-width: 1600px) {
+  .dashboard {
+    padding: 36px 48px;
+  }
+
+  .dashboard-header {
+    margin-bottom: 24px;
+  }
+
+  .dashboard-grid {
+    gap: 14px;
+  }
+
+  .dashboard-grid > div {
+    padding: 16px;
+  }
+}
+
+/* Tablettes */
+@media (max-width: 1100px) {
+  .dashboard-header h1 {
+    font-size: 38px;
+  }
+
+  .clock {
+    font-size: 42px;
+  }
+}
+
+/* Téléphones */
+@media (max-width: 650px) {
+  .dashboard {
+    padding: 18px;
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .dashboard-header h1 {
+    font-size: 36px;
+  }
+
+  .clock {
+    font-size: 36px;
+  }
+
+  .weather-section {
+    flex-direction: column;
+  }
+
+  .dashboard-grid > div {
+    padding: 14px;
+  }
+}
+
+/* MODE TV 16:9 — 7 widgets sur un écran */
+@media (min-width: 1200px) and (min-height: 650px) {
+  .dashboard {
+    height: 100dvh;
+    min-height: 0;
+    overflow: hidden;
+    padding: 18px 28px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .dashboard-header {
+    flex: 0 0 auto;
+    margin-bottom: 14px;
+  }
+
+  .dashboard-header h1 {
+    font-size: clamp(30px, 3.5vh, 46px);
+    margin: 4px 0;
+  }
+
+  .dashboard-header p {
+    margin: 0;
+    font-size: 12px;
+  }
+
+  .clock {
+    font-size: clamp(36px, 5vh, 60px);
+  }
+
+  .dashboard-grid {
+    flex: 1;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-rows: 36fr 39fr 25fr;
+    gap: 12px;
+  }
+
+  .dashboard-grid > div {
+    min-height: 0;
+    min-width: 0;
+    overflow: hidden;
+    padding: 12px;
+  }
+
+  .weather-section {
+    grid-column: span 2;
+    gap: 12px;
+  }
+
+  .news-section {
+    grid-column: 1 / -1;
+  }
+
+  .mantra-section {
+    grid-column: span 1;
+  }
+
+  .apps-section {
+    grid-column: span 2;
+  }
+
+  .server-section {
+    grid-column: span 1;
+  }
+
+  .weather-card {
+    min-height: 0;
+  }
+
+  .dashboard-grid h2 {
+    font-size: clamp(17px, 2vh, 23px);
+  }
+
+  .dashboard-grid p,
+  .dashboard-grid blockquote {
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+}
+
+/* Rééquilibrage vertical du mode TV */
+@media (min-width: 1200px) and (min-height: 650px) {
+  .dashboard-grid {
+    grid-template-rows: 30fr 45fr 25fr;
+  }
+
+  .dashboard-grid > div {
+    padding: 10px 12px;
+  }
+}
+
+/* Ambiance Pyrénées */
+.dashboard {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(9, 20, 35, .88),
+      rgba(12, 28, 47, .75)
+    ),
+    url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=2400&auto=format&fit=crop')
+    center / cover no-repeat fixed;
+}
+
+.dashboard-grid > div {
+  background: rgba(15, 31, 52, .78);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,.18);
+}
+
+/* Finition TV */
+@media (min-width: 1200px) and (min-height: 650px) {
+  .dashboard-grid {
+    grid-template-rows: 30fr 45fr 25fr;
+  }
+
+  .dashboard-grid > div {
+    padding: 10px 12px;
+  }
+}
