@@ -1,0 +1,38 @@
+:host {
+  display: block;
+  flex: 1;
+  min-width: 0;
+}
+
+.weather-card {
+  height: 100%;
+  padding: 20px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.06);
+}
+
+.weather-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  font-size: 16px;
+}
+
+.weather-icon {
+  font-size: 36px;
+}
+
+.temperature {
+  margin: 18px 0 8px;
+  font-size: 64px;
+  font-weight: 700;
+}
+
+p {
+  color: #cbd5e1;
+}
+
+small {
+  color: #94a3b8;
+}

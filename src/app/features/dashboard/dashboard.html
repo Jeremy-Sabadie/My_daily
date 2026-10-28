@@ -1,0 +1,49 @@
+<main class="dashboard">
+  <header class="dashboard-header">
+    <div>
+      <p>MON JOURNAL PERSONNEL</p>
+      <h1>Bonjour !</h1>
+      <span>{{ today() | date:'EEEE d MMMM yyyy':'':'fr' }}</span>
+    </div>
+    <div class="clock">
+      {{ today() | date:'HH:mm' }}
+    </div>
+  </header>
+
+  <section class="dashboard-grid">
+    <div class="weather-section">
+      <app-weather-card
+        city="Saint-Médard-en-Jalles"
+        [temperature]="18"
+      />
+      <app-weather-card
+        city="Nérac"
+        [temperature]="16"
+      />
+    </div>
+
+    <div class="agenda-section">
+      <app-daily-agenda />
+    </div>
+
+    <div class="verse-section">
+      <app-daily-verse />
+    </div>
+
+    <div class="news-section">
+      <app-news-card />
+    </div>
+
+    <div class="mantra-section">
+      <app-daily-mantra />
+    </div>
+
+    <div class="apps-section">
+      <app-app-launcher />
+    </div>
+
+    <div class="server-section">
+      <app-server-status />
+    </div>
+  </section>
+</main>

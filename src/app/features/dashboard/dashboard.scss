@@ -1,0 +1,73 @@
+.dashboard {
+  min-height: 100vh;
+  padding: 32px;
+  background: linear-gradient(135deg, #101b2b, #203a57);
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  h1 {
+    font-size: 48px;
+    margin: 8px 0;
+  }
+
+  p {
+    color: #a5bed9;
+    letter-spacing: 3px;
+  }
+}
+
+.clock {
+  font-size: 54px;
+  font-weight: bold;
+}
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.dashboard-grid > div {
+  padding: 20px;
+  background: rgba(20, 39, 61, 0.9);
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 16px;
+  min-height: 150px;
+}
+
+.weather-section {
+  grid-column: span 2;
+  display: flex;
+  gap: 20px;
+}
+
+.agenda-section,
+.verse-section,
+.mantra-section,
+.server-section {
+  grid-column: span 1;
+}
+
+.news-section,
+.apps-section {
+  grid-column: span 2;
+}
+
+@media (max-width: 900px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-grid > div {
+    grid-column: 1;
+  }
+}
+
+.news-section {
+  grid-column: 1 / -1;
+}

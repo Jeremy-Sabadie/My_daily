@@ -1,0 +1,13 @@
+<section class="server">
+  <h2>🖥️ Mon VPS</h2>
+  <p class="subtitle">Surveillance des services</p>
+
+  @for (service of services; track service.name) {
+    <div class="service">
+      <span>{{ service.name }}</span>
+      <span class="status">{{ service.status }}</span>
+    </div>
+  }
+
+  <small>Statuts fictifs — connexion à prévoir</small>
+</section>

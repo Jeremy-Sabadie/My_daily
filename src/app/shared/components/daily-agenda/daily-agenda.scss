@@ -1,0 +1,33 @@
+h2 {
+  margin: 0;
+  font-size: 23px;
+}
+
+.subtitle, small {
+  color: #94a3b8;
+}
+
+.subtitle {
+  margin-bottom: 22px;
+}
+
+.event {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+
+.event strong {
+  color: #93c5fd;
+}
+
+.event span {
+  font-size: 14px;
+}
+
+small {
+  display: block;
+  margin-top: 20px;
+}

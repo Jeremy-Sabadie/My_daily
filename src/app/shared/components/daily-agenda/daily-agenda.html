@@ -1,0 +1,13 @@
+<section class="agenda">
+  <h2>📅 Mon agenda</h2>
+  <p class="subtitle">Aujourd'hui</p>
+
+  @for (event of events; track event.time) {
+    <div class="event">
+      <strong>{{ event.time }}</strong>
+      <span>{{ event.title }}</span>
+    </div>
+  }
+
+  <small>Événements de démonstration</small>
+</section>

@@ -1,0 +1,14 @@
+<section class="apps">
+  <h2>🚀 Mes applications</h2>
+
+  <div class="app-grid">
+    @for (app of apps; track app.name) {
+      <div class="app">
+        <span>{{ app.icon }}</span>
+        <strong>{{ app.name }}</strong>
+      </div>
+    }
+  </div>
+
+  <small>Raccourcis de démonstration — liens à configurer</small>
+</section>
