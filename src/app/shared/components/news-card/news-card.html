@@ -1,24 +1,27 @@
 <section class="news">
   <header class="news-header">
     <div>
-      <span class="eyebrow">MON JOURNAL</span>
+      <small>MON JOURNAL</small>
       <h2>À la une</h2>
     </div>
-    <span class="demo">Édition de démonstration</span>
+    <small>Actualités Google News</small>
   </header>
 
   <div class="news-grid">
-    @for (article of articles; track article.title) {
-      <article class="news-item">
-        <img [src]="article.image" [alt]="article.title" loading="lazy">
-
+    @for (article of articles(); track article.category) {
+      <a class="news-item"
+         [href]="article.url"
+         target="_blank"
+         rel="noopener noreferrer">
         <div class="news-content">
-          <span class="category">{{ article.category }}</span>
+          <small>{{ article.category }}</small>
           <h3>{{ article.title }}</h3>
-          <p>{{ article.summary }}</p>
-          <small>{{ article.source }}</small>
+          <p>{{ article.description }}</p>
+          <small>{{ article.date }}</small>
         </div>
-      </article>
+      </a>
+    } @empty {
+      <p>{{ error() ? 'Actualités indisponibles' : 'Chargement des actualités…' }}</p>
     }
   </div>
 </section>
