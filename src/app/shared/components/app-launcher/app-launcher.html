@@ -3,12 +3,16 @@
 
   <div class="app-grid">
     @for (app of apps; track app.name) {
-      <div class="app">
+      <a class="app"
+         [href]="app.url"
+         target="_blank"
+         rel="noopener noreferrer"
+         [attr.aria-label]="'Ouvrir ' + app.name">
         <span>{{ app.icon }}</span>
         <strong>{{ app.name }}</strong>
-      </div>
+      </a>
     }
   </div>
 
-  <small>Raccourcis de démonstration — liens à configurer</small>
+  <small>Accès direct à mes applications</small>
 </section>
