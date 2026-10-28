@@ -1,59 +1,75 @@
-# MyDaily
+# 🏠 My Daily — Dashboard personnel
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+**Angular · TypeScript · Node.js · REST API · VPS Ubuntu**
 
-## Development server
+My Daily est une application web personnelle centralisant les informations du quotidien dans un tableau de bord unique, accessible depuis une Smart TV, un ordinateur ou un smartphone.
 
-To start a local development server, run:
+Le projet associe **développement frontend, intégration d'API, backend et auto-hébergement**.
 
-```bash
-ng serve
+## 🚀 Fonctionnalités
+
+- 🌤️ **Météo** : conditions météorologiques de Saint-Médard-en-Jalles et Nérac via Open-Meteo.
+- 📰 **Actualités** : récupération de flux RSS Google News et transformation XML → JSON.
+- 📅 **Agenda** : rendez-vous du jour et des sept prochains jours.
+- 📖 **Verset et mantra du jour** : sélection automatique selon la date.
+- 🖥️ **Supervision VPS** : état des applications, actualisé toutes les 60 secondes.
+- 🕒 **Horloge** : date et heure en temps réel.
+
+## 🛠️ Stack technique
+
+| Domaine | Technologies |
+|---|---|
+| Frontend | Angular, TypeScript, HTML5, CSS3 |
+| Backend | Node.js, API REST |
+| Intégrations | Open-Meteo, Google News RSS |
+| Données | JSON, XML |
+| Infrastructure | VPS OVH, Ubuntu, Caddy, HTTPS |
+| Versioning | Git, GitHub |
+
+## 🏗️ Architecture
+
+```text
+Smart TV / PC / Smartphone
+           |
+         HTTPS
+           |
+         Caddy
+           |
+     Frontend Angular
+           |
+     +-----+------+
+     |            |
+ Open-Meteo   API Node.js
+                  |
+           +------+------+
+           |      |      |
+          RSS   Agenda  Statuts
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Le frontend Angular consomme les API externes et les endpoints du backend :
 
-## Code scaffolding
+- `GET /api/news` — Actualités
+- `GET /api/agenda` — Rendez-vous
+- `GET /api/status` — État des services
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🎯 Compétences mises en pratique
 
-```bash
-ng generate component component-name
-```
+- Conception d'une interface Angular modulaire.
+- Consommation et intégration d'API REST.
+- Transformation et exploitation de données XML/JSON.
+- Développement et intégration frontend/backend.
+- Déploiement et maintenance sur VPS Linux.
+- Configuration HTTPS et reverse proxy Caddy.
+- Vérification des endpoints et du rendu multi-supports.
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## 🔄 Évolutions prévues
 
-```bash
-ng generate --help
-```
+- Optimisation responsive pour Samsung Tizen, Fire TV et iPhone.
+- Intégration d'une API pour le verset biblique quotidien.
+- Amélioration de l'ergonomie et de la gestion des erreurs.
 
-## Building
+---
 
-To build the project run:
+**Statut :** application fonctionnelle, en amélioration continue.
 
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+*Projet personnel illustrant une démarche transversale de développement, intégration, qualité logicielle et exploitation.*
