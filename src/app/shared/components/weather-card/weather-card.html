@@ -1,11 +1,16 @@
 <article class="weather-card">
   <div class="weather-heading">
     <span>📍 {{ city() }}</span>
-    <span class="weather-icon">⛅</span>
+    <span class="weather-icon">{{ weather()?.icon ?? '🌤️' }}</span>
   </div>
 
-  <div class="temperature">{{ temperature() }}°</div>
-
-  <p>{{ condition() }}</p>
-  <small>Données de démonstration</small>
+  @if (weather(); as data) {
+    <div class="temperature">{{ data.temperature }}°</div>
+    <p>{{ data.condition }}</p>
+    <small>Météo actuelle · Open-Meteo</small>
+  } @else if (error()) {
+    <p>Météo indisponible</p>
+  } @else {
+    <p>Chargement de la météo…</p>
+  }
 </article>

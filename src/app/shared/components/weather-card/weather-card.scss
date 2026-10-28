@@ -36,3 +36,18 @@ p {
 small {
   color: #94a3b8;
 }
+
+@media (min-width: 1200px) {
+  .weather-card {
+    padding: 12px;
+  }
+
+  .temperature {
+    font-size: clamp(40px, 6vh, 65px);
+    margin: 8px 0;
+  }
+
+  .weather-heading {
+    font-size: 14px;
+  }
+}
