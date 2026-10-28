@@ -1,13 +1,35 @@
 <section class="agenda">
   <h2>📅 Mon agenda</h2>
-  <p class="subtitle">Aujourd'hui</p>
 
-  @for (event of events; track event.time) {
-    <div class="event">
-      <strong>{{ event.time }}</strong>
-      <span>{{ event.title }}</span>
+  @if (loading()) {
+    <p>Chargement des rendez-vous…</p>
+  } @else if (error()) {
+    <p>Agenda indisponible</p>
+  } @else {
+    <div class="agenda-section">
+      <h3>AUJOURD'HUI</h3>
+
+      @for (event of todayEvents(); track event.id) {
+        <div class="event">
+          <strong>{{ time(event.start) }}</strong>
+          <span>{{ event.title }}</span>
+        </div>
+      } @empty {
+        <p class="empty">Aucun rendez-vous aujourd'hui</p>
+      }
+    </div>
+
+    <div class="agenda-section upcoming">
+      <h3>LES 7 PROCHAINS JOURS</h3>
+
+      @for (event of upcomingEvents(); track event.id) {
+        <div class="event">
+          <strong>{{ dayLabel(event.start) }} · {{ time(event.start) }}</strong>
+          <span>{{ event.title }}</span>
+        </div>
+      } @empty {
+        <p class="empty">Aucun rendez-vous à venir</p>
+      }
     </div>
   }
-
-  <small>Événements de démonstration</small>
 </section>

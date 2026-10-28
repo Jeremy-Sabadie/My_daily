@@ -58,6 +58,34 @@ createServer(async (req, res) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
+
+  if (req.url === '/api/agenda') {
+    try {
+      const response = await fetch('http://127.0.0.1:8083/api/agenda', {
+        signal: AbortSignal.timeout(8000)
+      });
+
+      if (!response.ok) throw new Error(`Agenda HTTP ${response.status}`);
+
+      const events = await response.json();
+
+      res.writeHead(200, {
+        'Content-Type': 'application/json; charset=utf-8',
+        'Cache-Control': 'no-store',
+        'Access-Control-Allow-Origin': 'http://localhost:4200'
+      });
+      res.end(JSON.stringify(events));
+    } catch (error) {
+      console.error('Agenda indisponible :', error.message);
+      res.writeHead(502, {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'http://localhost:4200'
+      });
+      res.end(JSON.stringify({ error: 'Agenda indisponible' }));
+    }
+    return;
+  }
+
   if (req.url !== '/api/news') {
     res.writeHead(404);
     return res.end(JSON.stringify({ error: 'Not found' }));

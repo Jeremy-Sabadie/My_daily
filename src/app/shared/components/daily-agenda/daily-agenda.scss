@@ -31,3 +31,30 @@ small {
   display: block;
   margin-top: 20px;
 }
+
+.agenda {
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.agenda-section {
+  margin-top: 12px;
+}
+
+.agenda-section h3 {
+  font-size: 12px;
+  letter-spacing: 1px;
+  opacity: .8;
+  margin-bottom: 8px;
+}
+
+.upcoming {
+  border-top: 1px solid rgba(255, 255, 255, .2);
+  padding-top: 10px;
+}
+
+.empty {
+  opacity: .65;
+  font-size: 13px;
+}
