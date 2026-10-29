@@ -1,4 +1,5 @@
 import { createServer } from 'node:http';
+import { readFileSync } from 'node:fs';
 import { XMLParser } from 'fast-xml-parser';
 
 const parser = new XMLParser({
@@ -54,10 +55,96 @@ async function getNews() {
   return results;
 }
 
+
+// YouVersion : verset officiel du jour, traduction française LSG 1910.
+const youversionKey = readFileSync(
+  process.env.YOUVERSION_KEY_FILE || '/opt/my-daily/.secrets/youversion.key', 'utf8'
+).trim();
+
+let verseCache = null;
+let verseCacheDate = '';
+
+async function getDailyVerse() {
+  const today = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Europe/Paris',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).format(new Date());
+
+  if (verseCache && verseCacheDate === today) return verseCache;
+
+  const [year, month, day] = today.split('-').map(Number);
+  const dayOfYear = Math.floor(
+    (Date.UTC(year, month - 1, day) - Date.UTC(year, 0, 1)) / 86400000
+  ) + 1;
+
+  const headers = {
+    'X-YVP-App-Key': youversionKey,
+    'Accept': 'application/json'
+  };
+
+  const dailyResponse = await fetch(
+    `https://api.youversion.com/v1/verse-of-the-days/${dayOfYear}`,
+    { headers, signal: AbortSignal.timeout(10000) }
+  );
+
+  if (!dailyResponse.ok) {
+    throw new Error(`YouVersion quotidien HTTP ${dailyResponse.status}`);
+  }
+
+  const daily = await dailyResponse.json();
+
+  if (!daily.passage_id) {
+    throw new Error('Référence YouVersion absente');
+  }
+
+  const passageResponse = await fetch(
+    `https://api.youversion.com/v1/bibles/93/passages/${encodeURIComponent(daily.passage_id)}`,
+    { headers, signal: AbortSignal.timeout(10000) }
+  );
+
+  if (!passageResponse.ok) {
+    throw new Error(`YouVersion passage HTTP ${passageResponse.status}`);
+  }
+
+  const passage = await passageResponse.json();
+
+  if (!passage.content || !passage.reference) {
+    throw new Error('Texte ou référence du passage absent');
+  }
+
+  verseCache = {
+    text: passage.content,
+    reference: passage.reference,
+    translation: 'Louis Segond 1910',
+    source: 'YouVersion',
+    date: today
+  };
+
+  verseCacheDate = today;
+  return verseCache;
+}
+
 createServer(async (req, res) => {
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');
 
+
+
+  if (req.url === '/api/verse') {
+    try {
+      const verse = await getDailyVerse();
+      res.setHeader('Cache-Control', 'no-store');
+      res.writeHead(200);
+      res.end(JSON.stringify(verse));
+    } catch (error) {
+      console.error('YouVersion indisponible :', error.message);
+      res.writeHead(502);
+      res.end(JSON.stringify({ error: 'Verset indisponible' }));
+    }
+    return;
+  }
 
   if (req.url === '/api/agenda') {
     try {
