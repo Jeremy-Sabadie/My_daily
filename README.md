@@ -1,59 +1,59 @@
-# MyDaily
+# MyDaily — Tableau de bord personnel
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.2.0.
+Application web responsive centralisant les informations et services du quotidien dans une interface unique, accessible sur ordinateur, smartphone et télévision.
 
-## Development server
+## Fonctionnalités
 
-To start a local development server, run:
+- **Météo** : conditions météorologiques de plusieurs villes.
+- **Agenda** : consultation d'un calendrier iCloud.
+- **Actualités** : récupération et affichage de flux d'information.
+- **Verset du jour** : intégration de l'API YouVersion.
+- **Mantras** : affichage de messages inspirants.
+- **Monitoring VPS** : suivi de l'état des services hébergés.
+- **Raccourcis** : accès rapide aux applications personnelles.
 
-```bash
-ng serve
-```
+## Stack technique
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+| Domaine | Technologies |
+|---|---|
+| Frontend | Angular 22, TypeScript, HTML, SCSS |
+| Backend | Node.js, API HTTP |
+| Tests | Vitest, tests unitaires Angular |
+| Infrastructure | Ubuntu VPS, Caddy, Git, GitHub |
 
-## Code scaffolding
+## Installation locale
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+**Prérequis :** Node.js et npm compatibles avec Angular 22.
 
 ```bash
-ng build
+git clone https://github.com/Jeremy-Sabadie/My_daily.git
+cd My_daily
+npm ci
+npm start
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Application accessible sur : **http://localhost:4200**
 
-## Running unit tests
+> **Note :** certaines fonctionnalités nécessitent un backend et des identifiants privés. Le frontend peut être démarré indépendamment, mais certaines données ne seront pas disponibles sans configuration complémentaire.
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+## Qualité et développement
 
-```bash
-ng test
-```
+- Développement organisé par branches Git dédiées aux fonctionnalités (`feat/*`) et aux corrections (`fix/*`).
+- Tests unitaires avec Vitest.
+- Intégration d'API externes et de services personnels.
+- Interface responsive adaptée à différents formats d'écran.
+- Déploiement sur VPS avec reverse proxy Caddy.
 
-## Running end-to-end tests
+## Démarche produit
 
-For end-to-end (e2e) testing, run:
+MyDaily répond à un besoin concret : disposer d'un point d'accès centralisé aux informations utiles au quotidien.
 
-```bash
-ng e2e
-```
+Le projet illustre un cycle de développement complet :
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+**Identification du besoin → Conception → Développement → Intégration → Tests → Corrections → Mise en production**
 
-## Additional Resources
+Il met en valeur une approche associant **développement logiciel, qualité et expérience utilisateur**.
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+---
+
+**Projet personnel — [Dépôt GitHub](https://github.com/Jeremy-Sabadie/My_daily)**
