@@ -1,21 +1,17 @@
-<section class="server">
-  <h2>🖥️ Mon VPS</h2>
-  <p class="subtitle">Surveillance des services</p>
+<section class="server-status">
+  <h2>🖥️ État du système</h2>
+  <p>Mes engagements</p>
 
-  @if (loading()) {
-    <p>Vérification des services…</p>
-  } @else {
-    @for (service of services(); track service.name) {
-      <div class="service">
-        <span>{{ service.name }}</span>
-        <span class="status"
-              [class.online]="service.status === 'En ligne'"
-              [class.offline]="service.status === 'Hors ligne'">
-          {{ service.status }}
-        </span>
+  @for (skill of ['Motivation', 'Qualité', 'Sincérité']; track skill) {
+    <div class="skill">
+      <div class="skill-header" style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;">
+        <span>{{ skill }}</span>
+        <span style="display:inline-flex;align-items:center;gap:9px;padding:7px 15px;border:2px solid #237a55;border-radius:999px;background:#06452f;color:#75efac;font-size:14px;font-weight:700;white-space:nowrap;">
+<span style="display:inline-block;width:12px;height:12px;flex-shrink:0;border-radius:50%;background:#65eda0;box-shadow:0 0 10px #65eda0;"></span>En ligne</span>
       </div>
-    }
+      <div class="skill-bar">
+        <div class="skill-progress" style="width:100%;"></div>
+      </div>
+    </div>
   }
-
-  <small>Actualisation automatique : 60 secondes</small>
 </section>
